@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>QUnit stolpehelvete</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.9.2.css" />
+</head>
+
+<body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
+    <script src="my.js"></script>
+    <script>
+        var inputValue = "5";
+        var numbers = [1, 2, 3, 4, 5];
+        let selector;
+        function show() { }
+
+        QUnit.test("ingen", function (assert) {
+            const actual = selectedBar("none");
+            const expected = "Deselected none";
+            assert.equal(actual, expected);
+        });
+        QUnit.test("velg", function (assert) {
+            const actual = selectedBar("5");
+            const expected = "Selected 5";
+            assert.equal(actual, expected);
+        });
+
+        QUnit.test("Fjern", function (assert) {
+            selector = "5";
+            deleteBar("5")
+            const actual = numbers;
+            const expected = [1, 2, 3, 4];
+            assert.deepEqual(actual, expected);
+        });
+
+        QUnit.test("endre", function (assert) {
+            inputValue = "4";
+            selector = "4";
+            const actual = changeBar("4");
+            const expected = "edited 4";
+            assert.equal(actual, expected);
+        });
+
+        QUnit.test("add", function (assert) {
+            const actual = addBar();
+            const expected = "added";
+            assert.equal(actual, expected);
+        });
+    </script>
+</body>
+
+</html>
